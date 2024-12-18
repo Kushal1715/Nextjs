@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
+const Products = async (props) => {
+  const searchParams = await props.searchParams;
+  console.log(searchParams);
+  return <div>Products</div>;
+};
 
-export default page
+export default Products;
