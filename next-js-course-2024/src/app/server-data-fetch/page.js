@@ -1,6 +1,6 @@
 async function FetchUsers() {
   try {
-    const response = await fetch('https://dummyjson.com/users')
+    const response = await fetch('https://dummyjson.com/users', { cache: 'no-store' })
     const result = await response.json();
     return result.users
   } catch (error) {
