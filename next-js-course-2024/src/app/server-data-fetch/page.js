@@ -1,6 +1,6 @@
 async function FetchUsers() {
   try {
-    const response = await fetch('https://dummyjson.com/users', { cache: 'no-store' })
+    const response = await fetch('https://dummyjson.com/users')
     const result = await response.json();
     return result.users
   } catch (error) {
@@ -14,5 +14,9 @@ export default async function ServerSideDataFetching() {
   console.log(users)
   return <div>
     <h1>Server side data fetching</h1>
+    <h1>Users</h1>
+    <ul>
+      {users && users.length > 0 && users.map((user, index) => <li key={index}>{user.firstName}</li>)}
+    </ul>
   </div>
 }
