@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { userFormInput } from "@/utils";
 
 const AddNewUser = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -29,21 +30,22 @@ const AddNewUser = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Name
-              </Label>
-              <Input id="name" value="Pedro Duarte" className="col-span-3" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
-                Username
-              </Label>
-              <Input id="username" value="@peduarte" className="col-span-3" />
-            </div>
+            {userFormInput.map((input, index) => (
+              <div key={index} className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor={input.name} className="text-right">
+                  {input.label}
+                </Label>
+                <Input
+                  id={input.name}
+                  name={input.name}
+                  placeholder={input.placeholder}
+                  className="col-span-3"
+                />
+              </div>
+            ))}
           </div>
           <DialogFooter>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit">Save</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
