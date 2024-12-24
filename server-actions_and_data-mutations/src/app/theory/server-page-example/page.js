@@ -1,12 +1,9 @@
+import { fetchProducts } from '@/actions';
 import React from 'react'
 
 const ServerActionExample = async () => {
 
-  async function fetchProducts() {
-    const response = await fetch('https://dummyjson.com/products')
-    const data = await response.json()
-    return data?.products;
-  }
+
 
   const result = await fetchProducts();
   console.log(result)
@@ -15,6 +12,9 @@ const ServerActionExample = async () => {
       <h1>
         Server action example in server component
       </h1>
+      <ul>
+        {result.map((product, index) => <li key={index}>{product.title}</li>)}
+      </ul>
     </div>
   )
 }
