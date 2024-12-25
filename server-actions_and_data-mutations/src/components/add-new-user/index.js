@@ -26,23 +26,11 @@ const AddNewUser = () => {
   };
 
   const handleUserFormAction = async () => {
-    const result = await addNewUserAction(userFormData);
+    const result = await addNewUserAction(userFormData, "/user-management");
     setOpenDialog(false);
     setUserFormData(addNewUserInitialFormState);
   };
 
-  const handleGetUserAction = async () => {
-    const result = await getUserAction();
-    console.log(result);
-  };
-
-  useEffect(() => {
-    try {
-      handleGetUserAction();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
   return (
     <>
       <div>

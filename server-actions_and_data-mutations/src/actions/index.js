@@ -2,6 +2,7 @@
 
 import connectToDB from "@/database";
 import User from "@/models/user";
+import { revalidatePath } from "next/cache";
 
 // export async function fetchProducts() {
 //   const response = await fetch('https://dummyjson.com/products')
@@ -9,11 +10,12 @@ import User from "@/models/user";
 //   return data?.products;
 // }
 
-export async function addNewUserAction(userFormData) {
+export async function addNewUserAction(userFormData, pathToRevalidate) {
   try {
     await connectToDB();
     const newlyCreatedUser = await User.create(userFormData);
     if (newlyCreatedUser) {
+      revalidatePath(pathToRevalidate);
       return {
         success: true,
         message: "New user added successfully",
@@ -40,7 +42,7 @@ export async function getUserAction() {
     if (users) {
       return {
         success: true,
-        data: users,
+        data: JSON.parse(JSON.stringify(users)),
       };
     } else {
       return {
