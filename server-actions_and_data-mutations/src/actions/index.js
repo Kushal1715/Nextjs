@@ -32,3 +32,27 @@ export async function addNewUserAction(userFormData) {
     };
   }
 }
+
+export async function getUserAction() {
+  try {
+    await connectToDB();
+    const users = await User.find({});
+    if (users) {
+      return {
+        success: true,
+        data: users,
+      };
+    } else {
+      return {
+        success: false,
+        message: "An error occurred while getting users",
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      message: "An error occurred while fetching users",
+    };
+  }
+}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { addNewUserInitialFormState, userFormInput } from "@/utils";
-import { addNewUserAction } from "@/actions";
+import { addNewUserAction, getUserAction } from "@/actions";
 
 const AddNewUser = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -31,6 +31,18 @@ const AddNewUser = () => {
     setUserFormData(addNewUserInitialFormState);
   };
 
+  const handleGetUserAction = async () => {
+    const result = await getUserAction();
+    console.log(result);
+  };
+
+  useEffect(() => {
+    try {
+      handleGetUserAction();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
   return (
     <>
       <div>
