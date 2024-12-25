@@ -7,12 +7,12 @@ const UserManagement = async () => {
   const result = await getUserAction();
   console.log(result);
   return (
-    <div className="p-20 max-w-6xl">
+    <div className="p-20 w-full">
       <div className="flex justify-between">
         <h1>User management</h1>
         <AddNewUser />
       </div>
-      <div className="mt-6 grid grid-cols-3 gap-5">
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {result && result.data && result.data.length > 0 ? (
           result.data.map((user, index) => (
             <SingleUserCard user={user} key={index} />
