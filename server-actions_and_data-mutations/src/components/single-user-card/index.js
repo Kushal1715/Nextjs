@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Card,
@@ -8,8 +9,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "../ui/button";
+import { deleteUserAction } from "@/actions";
 
 const SingleUserCard = ({ user }) => {
+  async function handleDeleteUser(userId) {
+    const result = await deleteUserAction(userId, "/user-management");
+    console.log(result);
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -23,7 +30,7 @@ const SingleUserCard = ({ user }) => {
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button>Edit</Button>
-        <Button>Delete</Button>
+        <Button onClick={() => handleDeleteUser(user?._id)}>Delete</Button>
       </CardFooter>
     </Card>
   );

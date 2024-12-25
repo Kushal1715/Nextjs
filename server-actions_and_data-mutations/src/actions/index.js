@@ -58,3 +58,29 @@ export async function getUserAction() {
     };
   }
 }
+
+export async function deleteUserAction(currentUserId, pathToRevalidate) {
+  await connectToDB();
+  try {
+    const deletedUser = await User.findByIdAndDelete(currentUserId);
+
+    if (deletedUser) {
+      revalidatePath(pathToRevalidate);
+      return {
+        success: true,
+        message: "User deleted successfully",
+      };
+    } else {
+      return {
+        success: false,
+        message: "An error occurred while deleting user",
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      message: "An error occurred while fetching users",
+    };
+  }
+}
