@@ -12,13 +12,15 @@ const UserManagement = async () => {
         <h1>User management</h1>
         <AddNewUser />
       </div>
-      {result && result.data && result.data.length > 0 ? (
-        result.data.map((user, index) => (
-          <SingleUserCard user={user} key={index} />
-        ))
-      ) : (
-        <h1>No users found. Please add user</h1>
-      )}
+      <div className="mt-6 grid grid-cols-3 gap-5">
+        {result && result.data && result.data.length > 0 ? (
+          result.data.map((user, index) => (
+            <SingleUserCard user={user} key={index} />
+          ))
+        ) : (
+          <h1>No users found. Please add user</h1>
+        )}
+      </div>
     </div>
   );
 };
