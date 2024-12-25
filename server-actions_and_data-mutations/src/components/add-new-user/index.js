@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { addNewUserInitialFormState, userFormInput } from "@/utils";
+import { addNewUserAction } from "@/actions";
 
 const AddNewUser = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -23,7 +24,13 @@ const AddNewUser = () => {
       (key) => userFormData[key].trim() !== ""
     );
   };
-  console.log(userFormData);
+
+  const handleUserFormAction = async () => {
+    const result = await addNewUserAction(userFormData);
+    setOpenDialog(false);
+    setUserFormData(addNewUserInitialFormState);
+  };
+
   return (
     <>
       <div>
@@ -43,7 +50,7 @@ const AddNewUser = () => {
               Make changes to your profile here. Click save when you're done.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
+          <form action={handleUserFormAction} className="grid gap-4 py-4">
             {userFormInput.map((input, index) => (
               <div key={index} className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor={input.name} className="text-right">
@@ -65,12 +72,12 @@ const AddNewUser = () => {
                 />
               </div>
             ))}
-          </div>
-          <DialogFooter>
-            <Button type="submit" disabled={!handleSaveButtonValid()}>
-              Save
-            </Button>
-          </DialogFooter>
+            <DialogFooter>
+              <Button type="submit" disabled={!handleSaveButtonValid()}>
+                Save
+              </Button>
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
     </>
