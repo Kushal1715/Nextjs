@@ -12,10 +12,12 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { userFormInput } from "@/utils";
+import { addNewUserInitialFormState, userFormInput } from "@/utils";
 
 const AddNewUser = () => {
   const [openDialog, setOpenDialog] = useState(false);
+  const [userFormData, setUserFormData] = useState(addNewUserInitialFormState);
+  console.log(userFormData);
   return (
     <>
       <div>
@@ -40,6 +42,14 @@ const AddNewUser = () => {
                   name={input.name}
                   placeholder={input.placeholder}
                   className="col-span-3"
+                  type={input.type}
+                  value={userFormData[input.name]}
+                  onChange={(event) => {
+                    setUserFormData({
+                      ...userFormData,
+                      [input.name]: event.target.value,
+                    });
+                  }}
                 />
               </div>
             ))}
