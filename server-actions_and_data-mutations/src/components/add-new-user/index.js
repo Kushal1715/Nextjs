@@ -17,13 +17,25 @@ import { addNewUserInitialFormState, userFormInput } from "@/utils";
 const AddNewUser = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [userFormData, setUserFormData] = useState(addNewUserInitialFormState);
+
+  const handleSaveButtonValid = () => {
+    return Object.keys(userFormData).every(
+      (key) => userFormData[key].trim() !== ""
+    );
+  };
   console.log(userFormData);
   return (
     <>
       <div>
         <Button onClick={() => setOpenDialog(true)}>Add New User</Button>
       </div>
-      <Dialog open={openDialog} onOpenChange={() => setOpenDialog(false)}>
+      <Dialog
+        open={openDialog}
+        onOpenChange={() => {
+          setOpenDialog(false);
+          setUserFormData(addNewUserInitialFormState);
+        }}
+      >
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
@@ -55,7 +67,9 @@ const AddNewUser = () => {
             ))}
           </div>
           <DialogFooter>
-            <Button type="submit">Save</Button>
+            <Button type="submit" disabled={!handleSaveButtonValid()}>
+              Save
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
