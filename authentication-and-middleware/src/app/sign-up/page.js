@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import React, { useState } from "react";
 import { initialRegFormValues, userRegistrationFormControls } from "../utils";
 import CommonFormInput from "@/components/common-form-input";
+import { Button } from "@/components/ui/button";
 
 const SignUp = () => {
   const [regFormValues, setRegFormValues] = useState(initialRegFormValues);
@@ -27,6 +28,7 @@ const SignUp = () => {
             />
           </div>
         ))}
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
