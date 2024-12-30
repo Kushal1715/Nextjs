@@ -1,6 +1,6 @@
 export const userRegistrationFormControls = [
   {
-    name: "userName",
+    name: "username",
     label: "User Name",
     placeholder: "Please enter your user name",
     componentType: "input",
@@ -21,3 +21,9 @@ export const userRegistrationFormControls = [
     type: "password",
   },
 ];
+
+export const initialRegFormValues = {
+  username: "",
+  email: "",
+  password: "",
+};
