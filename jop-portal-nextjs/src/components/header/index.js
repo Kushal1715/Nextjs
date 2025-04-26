@@ -4,12 +4,8 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { AlignJustify, Moon } from "lucide-react";
-// import { UserButton } from "@clerk/nextjs";
-// import { useTheme } from "next-themes";
 
 function Header({ user, profileInfo }) {
-  // const { theme, setTheme } = useTheme();
-
   const menuItems = [
     {
       label: "Home",
@@ -84,12 +80,6 @@ function Header({ user, profileInfo }) {
                   </Link>
                 ) : null
               )}
-              {/* <Moon
-                className="cursor-pointer mb-4"
-                fill={theme === "dark" ? "light" : "dark"}
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              /> */}
-              {/* <UserButton afterSignOutUrl="/" /> */}
             </div>
           </SheetContent>
         </Sheet>
@@ -109,12 +99,6 @@ function Header({ user, profileInfo }) {
               </Link>
             ) : null
           )}
-          {/* <Moon
-            className="cursor-pointer"
-            fill={theme === "dark" ? "light" : "dark"}
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          /> */}
-          {/* <UserButton afterSignOutUrl="/" /> */}
         </nav>
       </header>
     </div>
